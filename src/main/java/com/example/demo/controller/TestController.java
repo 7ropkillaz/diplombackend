@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 
 import com.example.demo.Main;
+import com.example.demo.entity.PacientEntity;
+import com.example.demo.repository.PacientRepository;
 import com.example.demo.service.XlsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,14 +17,17 @@ import java.util.Map;
 public class TestController {
 @Autowired
     private XlsService xlsService;
+@Autowired
+private PacientRepository pacientRepository;
 
     @PostMapping(value = "/test")
     public ResponseEntity get(@RequestBody Map<String, String> inputMap){
 
-        Map<String, String> map = new HashMap<>();
-        map.put("о1", "боль");
-        map.put("о2", "муж");
-        xlsService.createXls(map);
+        for (int i = 0; i < inputMap.size() ; i++) {
+            xlsService.createXls(inputMap);
+        }
+        
+
 
 
 
